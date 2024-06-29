@@ -14,7 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: instal dependencies
-      run: sudo apt-get install qt5-default
+      run: | 
+        sudo apt-get update
+        sudo apt-get install qt5-default
+        
     - name: build project
       run: |
         qmake -o Makefile your_project.pro
