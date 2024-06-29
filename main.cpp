@@ -5,7 +5,6 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
-#include <Qdir>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
