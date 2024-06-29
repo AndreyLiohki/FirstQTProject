@@ -4,7 +4,6 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
-#include <Qdir>
 #include <QString>
 
 using namespace std;
@@ -29,9 +28,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QDir pluginsDir = QDir(QCoreApplication::applicationDirPath());
-    pluginsDir.cd("plugins");
-    QCoreApplication::addLibraryPath(pluginsDir.absolutePath());
+
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("Order.db");
@@ -55,9 +52,6 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QDir pluginsDir = QDir(QCoreApplication::applicationDirPath());
-    pluginsDir.cd("plugins");
-    QCoreApplication::addLibraryPath(pluginsDir.absolutePath());
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("Order.db");
@@ -81,9 +75,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    QDir pluginsDir = QDir(QCoreApplication::applicationDirPath());
-    pluginsDir.cd("plugins");
-    QCoreApplication::addLibraryPath(pluginsDir.absolutePath());
+
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("Order.db");
@@ -107,6 +99,14 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_textEdit_textChanged()
 {
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("Order.db");
+    if(!db.open()){
+        ui->textEdit->setText( "Error:" + QString( db.lastError().text()));
+        return;
+    }
+    QSqlQuery query;
     QString field1="", field2="", field3="";
     if(type1 == true){
         ui->textEdit_4->setPlainText(field1);
