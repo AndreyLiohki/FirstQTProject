@@ -16,7 +16,8 @@ jobs:
     - name: instal dependencies
       run: | 
         sudo apt-get update
-        sudo apt-get install qt5-default
+        sudo apt-get install qtbase5-dev
+        which qmake
         
     - name: build project
       run: |
